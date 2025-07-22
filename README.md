@@ -27,6 +27,64 @@ This project uses **Stable Diffusion XL (SDXL)** models to generate photorealist
    - High-resolution images (PNG/JPG format) saved locally or displayed in notebooks.
 
 ---
+## 📖 How It Works
+
+This project leverages **Stable Diffusion XL (SDXL)**, a state-of-the-art text-to-image model, to generate photorealistic images from natural language descriptions. Here’s a step-by-step breakdown:
+
+---
+
+### 1️⃣ Input Prompt
+- Accepts **text prompts** that describe the desired image.
+  - Example: *"A futuristic city skyline at sunset with flying cars"*
+- Supports **negative prompts** to avoid unwanted artifacts.
+  - Example: *"blurry, distorted, low resolution"*
+
+---
+
+### 2️⃣ Tokenization & Embedding
+- Uses **CLIPTokenizer** from Hugging Face Transformers to:
+  - Tokenize the text prompt into numerical tokens.
+  - Feed tokens into **CLIPTextModel** to generate text embeddings.
+- These embeddings represent the semantic meaning of the prompt.
+
+---
+
+### 3️⃣ Latent Space Generation
+- The text embeddings condition a **UNet-based diffusion model**:
+  - Starts with random Gaussian noise in latent space.
+  - Iteratively denoises it using a trained **UNet2DConditionModel**.
+- **Euler Ancestral Scheduler** controls the noise removal steps.
+
+---
+
+### 4️⃣ Decoding to Image
+- The latent representation is passed through a **Variational Autoencoder (VAE)**:
+  - Decodes the latent features into pixel space.
+  - Outputs a high-resolution image matching the input prompt.
+
+---
+
+### 5️⃣ Output
+- Saves the final image locally (e.g., `output/generated_image.png`).
+- Optionally displays it directly in a Jupyter Notebook for quick preview.
+
+---
+
+### ⚡ Key Parameters
+| Parameter            | Description                                 |
+|----------------------|---------------------------------------------|
+| `num_inference_steps`| Number of denoising steps (higher = better)|
+| `guidance_scale`     | Strength of prompt conditioning            |
+| `negative_prompt`    | Features to suppress during generation     |
+| `seed`               | Controls randomness for reproducibility    |
+
+---
+
+### 📦 Libraries Used
+- **Hugging Face Diffusers**: For loading SDXL pipeline.
+- **Transformers**: For text processing with CLIP models.
+- **PyTorch**: For model inference and GPU acceleration.
+---
 
 ## 🌟 Why Stable Diffusion XL?
 
