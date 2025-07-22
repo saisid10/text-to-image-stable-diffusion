@@ -1,110 +1,53 @@
 # text-to-image-stable-diffusion
-Text-to-Image Generation using Stable Diffusion XL (SDXL)
-Stable Diffusion XL (SDXL): Generate photorealistic images from natural language text prompts using state-of-the-art diffusion models.
+# 🎨 Text-to-Image Generation using Stable Diffusion XL (SDXL)
 
-🏗️ System Workflow
-Input:
+This project uses **Stable Diffusion XL (SDXL)** models to generate photorealistic images from natural language prompts. It leverages Hugging Face’s 🤗 **Diffusers** library and PyTorch for high-quality text-to-image generation.
 
-Natural language text prompts (e.g., "A cinematic 35mm film still of a rainy street at night")
+---
 
-Optional negative prompts to filter undesirable features.
+## 🏗️ System Workflow
 
-Preprocessing:
+1. **Input**:  
+   - Natural language text prompts (e.g., *“A cinematic 35mm film still of a rainy street at night”*)  
+   - Optional negative prompts to filter out unwanted features.
 
-Tokenization of input prompts using Hugging Face’s CLIPTokenizer.
+2. **Preprocessing**:
+   - Tokenization of text using `CLIPTokenizer`.
+   - Encoding prompts into latent space for SDXL.
 
-Conversion to latent representations for SDXL model inference.
+3. **Model**:
+   - **Stable Diffusion XL** (models like `stabilityai/sdxl-turbo`).
+   - Components: UNet, VAE (AutoencoderKL), CLIPTextModel.
 
-Model:
+4. **Image Generation**:
+   - Uses denoising diffusion probabilistic models.
+   - Parameters: `num_inference_steps`, `guidance_scale`, random seeds.
 
-Stable Diffusion XL pipeline loaded via Hugging Face Diffusers.
+5. **Output**:  
+   - High-resolution images (PNG/JPG format) saved locally or displayed in notebooks.
 
-Supports models like stabilityai/sdxl-turbo and stable-diffusion-xl-base-1.0.
+---
 
-Image Generation:
+## 🌟 Why Stable Diffusion XL?
 
-Uses UNet and VAE architectures for denoising diffusion.
+✅ Photorealistic results  
+✅ Prompt engineering support (positive & negative)  
+✅ Optimized for CUDA GPUs  
+✅ Beginner-friendly, modular codebase  
 
-Adjustable parameters: num_inference_steps, guidance_scale, and random seeds.
+---
 
-Output:
+## 🔥 Example
 
-High-resolution images (.png/.jpg)
+**Prompt:**  
+> *“A Girl holding a card saying do you love me to a guy, real-life style, high quality, detailed and perfect face.”*
 
-Saved locally or displayed in Jupyter notebooks for quick preview.
+**Negative Prompt:**  
+> *“low quality, bad anatomy, deformed, blurry, ugly, noise, bad hands, extra limbs”*
 
-🌟 Why Stable Diffusion XL?
-✅ High-quality outputs with photorealism.
+📷 *Result saved as `examples/sample_output.png`*
 
-✅ Supports prompt engineering for creative control.
+---
 
-✅ Lightweight and runs efficiently on CUDA GPUs.
+## 📦 Repository Structure
 
-✅ Easy to extend for multi-modal applications.
-
-🔥 Example
-Prompt:
-
-“A Girl holding a card saying do you love me to a guy, real-life style, high quality, detailed and perfect face.”
-
-Negative Prompt:
-
-“low quality, bad anatomy, deformed, blurry, ugly, distorted, noise, poor lighting, bad hands, extra limbs”
-
-Result:
-📷 examples/sample_output.png
-
-⚙️ Technical Details
-Libraries:
-
-Hugging Face Diffusers
-
-Transformers
-
-PyTorch
-
-Accelerate
-
-Model Components:
-
-UNet2DConditionModel
-
-AutoencoderKL (VAE)
-
-CLIPTextModel + CLIPTokenizer
-
-Performance:
-
-Inference time: ~2-5 seconds per image on GPU.
-
-Resolution: 512x512 by default (configurable).
-
-💻 How to Run
-📥 Clone the repo
-bash
-Copy
-Edit
-git clone https://github.com/<your-username>/text-to-image-sdxl.git
-cd text-to-image-sdxl
-🛠 Install dependencies
-bash
-Copy
-Edit
-pip install -r requirements.txt
-🔑 Setup Hugging Face Token
-bash
-Copy
-Edit
-export HF_TOKEN=your_hf_token_here
-🚀 Run the main script
-bash
-Copy
-Edit
-python src/main.py
-📒 Or launch the Jupyter notebook
-bash
-Copy
-Edit
-jupyter notebook notebooks/text_to_image_sdxl.ipynb
-📜 License
-Licensed under the MIT License. See LICENSE for details.
