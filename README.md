@@ -47,7 +47,13 @@ This project uses **Stable Diffusion XL (SDXL)** models to generate photorealist
 
 📷 *Result saved as `examples/sample_output.png`*
 
----
 
-## 📦 Repository Structure
+
+---
+## ❤️ Acknowledgements
+
+- [Hugging Face Diffusers](https://github.com/huggingface/diffusers)
+- [Stable Diffusion XL](https://stability.ai/)
+- [PyTorch](https://pytorch.org/)
+
 
